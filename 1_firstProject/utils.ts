@@ -6,3 +6,8 @@ export const parseArgsToNumberArray = (array:string[]):number[]=>{
         return Number(el)
     })
 }
+
+export const extractDataFromCommandLine = ():string[]=>{
+    const[first,second,...data] = process.argv
+    return data
+}

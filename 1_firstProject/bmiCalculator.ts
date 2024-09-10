@@ -1,4 +1,4 @@
-import { parseArgsToNumberArray } from "./utils"
+import { extractDataFromCommandLine, parseArgsToNumberArray } from "./utils"
 
 type bodyType ='Underweight (Severe thinness)' |
 'Underweight (Moderate thinness)' |
@@ -35,7 +35,7 @@ const bmiCalculation = (height:number,weight:number):bodyType=>{
 
 try{
 
-    const [first, second,...data] = process.argv
+    const data = extractDataFromCommandLine()
     const[height,weight] = parseArgsToNumberArray(data)
     console.log(bmiCalculation(height,weight))
 

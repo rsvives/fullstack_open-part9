@@ -1,4 +1,4 @@
-import {  parseArgsToNumberArray } from "./utils"
+import {  extractDataFromCommandLine, parseArgsToNumberArray } from "./utils"
 
 interface ResultObjetc {
     periodLength: number
@@ -44,7 +44,7 @@ const calculateExercises = (args:number[] ):ResultObjetc=>{
     
 }
 try{
-    const [first,second, ...data]= process.argv
+    const data = extractDataFromCommandLine()
     console.log(calculateExercises(parseArgsToNumberArray(data)))
 }catch (error: unknown) {
     let errorMessage = 'Something bad happened.'
