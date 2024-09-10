@@ -1,3 +1,5 @@
+import { parseArgsToNumberArray } from "./utils"
+
 type bodyType ='Underweight (Severe thinness)' |
 'Underweight (Moderate thinness)' |
 'Underweight (Mild thinness)' |
@@ -31,4 +33,16 @@ const bmiCalculation = (height:number,weight:number):bodyType=>{
     return result
 }
 
-console.log(bmiCalculation(175,75))
+try{
+
+    const [first, second,...data] = process.argv
+    const[height,weight] = parseArgsToNumberArray(data)
+    console.log(bmiCalculation(height,weight))
+
+}catch (error: unknown) {
+    let errorMessage = 'Something bad happened.'
+    if (error instanceof Error) {
+      errorMessage += ' Error: ' + error.message;
+    }
+    console.error(errorMessage);
+}
