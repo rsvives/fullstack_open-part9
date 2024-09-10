@@ -3,9 +3,9 @@ Part 9 - Typescript:
         ✔ Read docs @est(30m) @done(24-09-10 17:20)
     9.b First Steps: 
         ☐ Read docs @est(1h)
-        ☐ 9.1 Body mass index @est(15m)
-        ☐ 9.2 Exercise calculator @est(15m)
-        ☐ 9.3 Command line @est(15m)
+        ✔ 9.1 Body mass index @est(15m) @done(24-09-10 18:50)
+        ✔ 9.2 Exercise calculator @est(15m) @started(24-09-10 18:50) @done(24-09-10 19:36) @lasted(46m57s)
+        ☐ 9.3 Command line @est(15m) @started(24-09-10 19:41)
         ☐ 9.4 Express @est(15m)
         ☐ 9.5 WebBMI @est(15m)
         ☐ 9.6 ESLint @est(5m)
