@@ -11,7 +11,7 @@ type bodyType ='Underweight (Severe thinness)' |
 
 const bmiCalculation = (height:number,weight:number):bodyType=>{
     const bmi = weight/Math.pow(height/100,2)
-    let result : bodyType = null
+    let result : bodyType 
 
     if(bmi<16){
         result = 'Underweight (Severe thinness)'
