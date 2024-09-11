@@ -9,7 +9,7 @@ type bodyType ='Underweight (Severe thinness)' |
 'Obese (Class II)' |
 'Obese (Class III)' 
 
-const bmiCalculation = (height:number,weight:number):bodyType=>{
+export const bmiCalculation = (height:number,weight:number):bodyType=>{
     const bmi = weight/Math.pow(height/100,2)
     let result : bodyType 
 
