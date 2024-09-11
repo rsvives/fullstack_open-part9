@@ -8,6 +8,6 @@ export const parseArgsToNumberArray = (array:string[]):number[]=>{
 }
 
 export const extractDataFromCommandLine = ():string[]=>{
-    const[first,second,...data] = process.argv
+    const[_first,_second,...data] = process.argv
     return data
 }
