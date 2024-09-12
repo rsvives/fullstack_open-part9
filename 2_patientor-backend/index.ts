@@ -1,6 +1,7 @@
 import express,{json} from 'express';
 import cors from 'cors';
-import { getAll } from './controllers/diagnosesController';
+
+import diagnosesRouter from './routes/diagnoses';
 
 const app = express();
 
@@ -12,10 +13,7 @@ app.get('/api/ping',(req,res)=>{
     res.send('<h1>Pong</h1>');
 });
 
-app.get('/api/diagnoses',(_req,res)=>{
-    const diagnoses = getAll();
-    res.json(diagnoses);
-});
+app.use('/api/diagnoses',diagnosesRouter);
 
 const PORT = process.env.PORT || 3001; 
 
