@@ -2,14 +2,14 @@ Part 9 - Typescript:
     9.a Basics: 
         ✔ Read docs @est(30m) @done(24-09-10 17:20)
     9.b First Steps: 
-        ☐ Read docs @est(1h)
+        ✔ Read docs @est(1h) @done(24-09-11 19:38)
         ✔ 9.1 Body mass index @est(15m) @done(24-09-10 18:50)
         ✔ 9.2 Exercise calculator @est(15m) @started(24-09-10 18:50) @done(24-09-10 19:36) @lasted(46m57s)
         ✔ 9.3 Command line @est(15m) @started(24-09-10 19:41) @done(24-09-10 20:47) @lasted(1h6m40s)
-        ☐ 9.4 Express @est(30m)
-        ☐ 9.5 WebBMI @est(30m)
-        ☐ 9.6 ESLint @est(5m)
-        ☐ 9.7 WebExercises @est(20m)
+        ✔ 9.4 Express @est(30m) @done(24-09-11 19:38)
+        ✔ 9.5 WebBMI @est(30m) @done(24-09-11 19:38)
+        ✔ 9.6 ESLint @est(5m) @done(24-09-11 19:38)
+        ✔ 9.7 WebExercises @est(20m) @done(24-09-11 19:38)
     9.c Typing Express: 
         ☐ Read docs @est(1.5h)
         ☐ 9.8 Patientor: backend pt1: ping healthcheck @est(30m)
