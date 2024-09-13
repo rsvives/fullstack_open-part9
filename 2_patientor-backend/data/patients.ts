@@ -1,6 +1,7 @@
 import { Patient } from "../types";
+import { newPatientConverter } from "../utils";
 
-export const patients: Patient[] = [
+const data = [
     {
         "id": "d2773336-f723-11e9-8f0b-362b9e155667",
         "name": "John McClane",
@@ -43,3 +44,8 @@ export const patients: Patient[] = [
     }
 ];
 
+export const patients:Patient[] = data.map(p=>{
+    const mappedPatient = newPatientConverter(p) as Patient;
+    mappedPatient.id = p.id;
+    return mappedPatient;
+});
