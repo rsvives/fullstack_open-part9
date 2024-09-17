@@ -18,10 +18,10 @@ Part 9 - Typescript:
         ✔ 9.11 Patientor: backend pt4: type patient + endpoint @est(30m) @done(24-09-13 16:23)
         ✔ 9.12 Patientor: backend pt5: post patient @est(30m) @done(24-09-13 16:23)
         ✔ 9.13 Patientor: backend pt6: safe parse + validation + type predicate + enum type for gender @est(30m) @done(24-09-17 11:59)
-        ☐ 9.14 Patientor: backend pt7: Zod to validate post patients @est(30m) @started(24-09-17 11:59)
+        ✔ 9.14 Patientor: backend pt7: Zod to validate post patients @est(30m) @started(24-09-17 11:59) @done(24-09-17 15:23) @lasted(3h24m3s)
     9.d React with types:
         ☐ Read docs @est(1h)
-        ☐ 9.15 Course info app: init and refactor @est(30m)
+        ☐ 9.15 Course info app: init and refactor @est(30m) @started(24-09-17 15:23)
         ☐ 9.16 Course info app: courseParts @est(30m)
         ☐ 9.17 Flight diary: init + fetch entries @est(30m)
         ☐ 9.18 Flight diary: add new @est(30m)
