@@ -18,11 +18,6 @@ export const newPatientConverter = (object:unknown):NewPatient=>{
     }
     throw new Error('Incorrect data: some fields are missing');
 };
-
-const isString = (text: unknown): text is string => {
-    return typeof text === 'string' || text instanceof String;
-  };
-
 export const parseName = (name:unknown):string=>{
     if (!name || !isString(name)) {
         throw new Error('Incorrect or missing name');
@@ -53,9 +48,13 @@ export const parseGender = (gender:unknown):Gender=>{
       }
       return gender;
 };
+
 const isGender = (param:string): param is Gender=>{
     return Object.values(Gender).map(g=>g.toString()).includes(param);
 };
 const isDate = (date:string):boolean =>{
     return Boolean(Date.parse(date));
 };
+const isString = (text: unknown): text is string => {
+    return typeof text === 'string' || text instanceof String;
+  };
