@@ -1,12 +1,11 @@
-type coursePart ={
-    name:string,
-    exerciseCount: number
-}
+import { CoursePart } from "../types"
+import Part from "./Part"
 
-const Content = ({courseParts}:{courseParts:coursePart[]})=>{
+
+const Content = ({courseParts}:{courseParts:CoursePart[]})=>{
     return (
         courseParts.map(part=>{
-            return <p key={part.name}>{part.name} | Exercises: {part.exerciseCount}</p>
+            return  <Part key={part.name} part={part} />
         })
     )
 }
