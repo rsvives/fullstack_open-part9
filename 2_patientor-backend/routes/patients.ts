@@ -1,7 +1,7 @@
-import { Response, Router } from "express";
+import { Request, Response, Router } from "express";
 import patientService from "../services/patientsService";
-import {  Patient, PatientWithoutSSN } from '../types';
-import { newPatientConverter } from "../utils";
+import { NewPatient, PatientWithoutSSN } from '../types';
+import { errorMiddleware, newPatientParser } from "../middlewares";
 
 const router = Router();
 
@@ -10,12 +10,11 @@ router.get('/',(_req,res:Response<PatientWithoutSSN[]>)=>{
     res.status(200).json(patients);
 });
 
-router.post('/',(req,res:Response<Patient>)=>{
-    
-    const newPatient = newPatientConverter(req.body);
-     
-    const addedPatient = patientService.addPatient(newPatient);
+router.post('/',newPatientParser,(req:Request<unknown,unknown,NewPatient>,res:Response<NewPatient>)=>{
+    const addedPatient = patientService.addPatient(req.body);
     res.status(200).json(addedPatient);
 });
+
+router.use(errorMiddleware);
 
 export default router;
