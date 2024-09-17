@@ -30,7 +30,7 @@ export const parseName = (name:unknown):string=>{
       return name;
 };
 export const parseDateOfBirth = (dateOfBirth:unknown):string=>{
-    if (!dateOfBirth || !isString(dateOfBirth)) {
+    if (!dateOfBirth || !isString(dateOfBirth) || !isDate(dateOfBirth)) {
         throw new Error('Incorrect or missing dateOfBirth');
       }
       return dateOfBirth;
@@ -41,7 +41,6 @@ export const parseSsn = (ssn:unknown):string=>{
       }
       return ssn;
 };
-
 export const parseOccupation = (occupation:unknown):string=>{
     if (!occupation || !isString(occupation)) {
         throw new Error('Incorrect or missing occupation');
@@ -54,7 +53,9 @@ export const parseGender = (gender:unknown):Gender=>{
       }
       return gender;
 };
-
 const isGender = (param:string): param is Gender=>{
     return Object.values(Gender).map(g=>g.toString()).includes(param);
+};
+const isDate = (date:string):boolean =>{
+    return Boolean(Date.parse(date));
 };
