@@ -23,7 +23,7 @@ Part 9 - Typescript:
         ☐ Read docs @est(1h)
         ✔ 9.15 Course info app: init and refactor @est(30m) @started(24-09-17 15:23) @done(24-09-17 17:58) @lasted(2h35m44s)
         ✔ 9.16 Course info app: courseParts @est(30m ) @started(24-09-17 17:58) @done(24-09-17 18:35) @lasted(37m28s)
-        ☐ 9.17 Flight diary: init + fetch entries @est(30m) @started(24-09-17 18:35)
+        ✔ 9.17 Flight diary: init + fetch entries @est(30m) @started(24-09-17 18:35) @done(24-09-17 19:42) @lasted(1h7m57s)
         ☐ 9.18 Flight diary: add new @est(30m)
         ☐ 9.19 Flight diary: error notification @est(30m)
         ☐ 9.20 Flight diary: improve inputs @est(30m)
