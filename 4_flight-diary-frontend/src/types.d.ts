@@ -3,7 +3,6 @@ enum Weather {
     Sunny='sunny',
     Windy='windy',
     Cloudy='cloudy',
-
 }
 
 enum Visibility {
@@ -20,5 +19,8 @@ export type DiaryEntry = {
     comment?:string
 }
 
-
 export type NewDiaryEntry = Omit<DiaryEntry,'id'>
+
+export type Notification={
+    message:string,
+  }

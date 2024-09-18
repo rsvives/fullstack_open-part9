@@ -8,17 +8,11 @@ import {
   getAllDiaries } from './services/diaryService';
 import NewDiary from './components/NewDiary';
 import { AxiosError } from 'axios';
+import NotificationComponent from './components/NotificationComponent';
 
-type Notification={
-  message:string,
-}
 
-function NotificationComponent({message}:Notification){
-  
-  return(
-    message!='' && <p style={{color:'red',background:'rgba(255,0,0,0.2)',padding:'4px 8px', position:'sticky', top:8,left:0,width:'100%',margin:12}}>{message}</p>
-  )
-} 
+
+
 
 function App() {
   const [diaries,setDiaries] = useState<DiaryEntry[]>([])
