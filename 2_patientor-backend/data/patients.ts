@@ -47,5 +47,6 @@ const data = [
 export const patients:Patient[] = data.map(p=>{
     const mappedPatient = NewPatientSchema.parse(p) as Patient;
     mappedPatient.id = p.id;
+    mappedPatient.entries=[];
     return mappedPatient;
 });

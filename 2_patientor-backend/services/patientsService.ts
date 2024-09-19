@@ -10,10 +10,14 @@ import { v4 as uuid } from 'uuid';
     return patients.map( ({name,id,dateOfBirth, occupation, gender}) => ({name,id,dateOfBirth,occupation,gender}) );
 };
 
+const getPatientById = (id:string):Patient | undefined=>{
+  return patients.find(p=>p.id===id);
+};
  const addPatient = (patient:NewPatient):Patient=>{
     const newPatient = {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+         
         id:  uuid(),
+        entries:[],
         ...patient
     };
 
@@ -24,5 +28,6 @@ import { v4 as uuid } from 'uuid';
 export default{
     getAll,
     getAllWithoutSSN,
+    getPatientById,
     addPatient
 };
