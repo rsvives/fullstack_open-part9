@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Patient, PatientFormValues } from "../types";
+import { EntryWithoutId, Patient, PatientFormValues } from "../types";
 
 import { apiBaseUrl } from "../constants";
 
@@ -25,7 +25,15 @@ const create = async (object: PatientFormValues) => {
   return data;
 };
 
+
+const addEntry = async(patienId:string,entry:EntryWithoutId)=>{
+  console.log('adding entry', patienId,entry);
+  const addedEntry = await axios.post(`${apiBaseUrl}/patients/${patienId}/entries`,entry);
+  // console.log(addedEntry);
+  return addedEntry;
+};
+
 export default {
-  getAll, getById, create
+  getAll, getById, create, addEntry
 };
 

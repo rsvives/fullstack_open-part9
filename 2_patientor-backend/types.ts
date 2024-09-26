@@ -113,6 +113,7 @@ export const OccupationalHealthcareEntrySchema = BaseEntrySchema.extend({
 export const NewEntrySchema = HospitalEntrySchema.or(HealthCheckEntrySchema).or(OccupationalHealthcareEntrySchema);
 
 export type NewEntry = z.TypeOf<typeof NewEntrySchema>;
+
 export type Entry = NewEntry & {
     id: string;
 };

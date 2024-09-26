@@ -26,6 +26,7 @@ const getPatientById = (id:string):Patient | undefined=>{
 };
 
 const addEntryToPatient = (patientId:Patient['id'],entry:NewEntry)=>{
+  console.log('backend:',entry);
   const patient  = getPatientById(patientId);
 
   patient?.entries.push({...entry, id: uuid()});
