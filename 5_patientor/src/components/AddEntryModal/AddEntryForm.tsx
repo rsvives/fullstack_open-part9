@@ -1,48 +1,147 @@
 
-// import { PatientFormValues } from "../../types";
-
-import { SyntheticEvent } from "react";
-import { EntryWithoutId } from "../../types";
+import { SyntheticEvent, useState } from "react";
+import { EntryType, EntryWithoutId } from "../../types";
+import { Button, Grid, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material";
+import { assertNever } from "../../utils";
 
 interface Props {
-//  onSubmit: (values: PatientFormValues) => Promise<void>;
-onSubmit: (entry:EntryWithoutId)=>void;
- onCancel: ()=>void
+    onSubmit: (entry: EntryWithoutId) => void;
+    onCancel: () => void
 }
 
-const AddEntryForm = ({onSubmit,onCancel}:Props)=>{
-    // const [description,setDescription] = useState<string>('something bad');
-    // const [date,setDate] = useState<string>('1991-12-12');
-    // const [specialist,setSpecialist] = useState<string>('dr noir');
-    // const [diagnosisCodes,setDiagnosisCodes] = useState<string[]>([ "Z57.1","Z74.3","M51.2"]);
-        const description ='something bad';
-        const date ='1991-12-12';
-        const specialist ='dr noir';
-        const diagnosisCodes = [ "Z57.1","Z74.3","M51.2"];
+const typeOptions: EntryType[] = Object.values(EntryType).map(e => e);
+console.log(typeOptions);
 
-    const addEntry = (event:SyntheticEvent)=>{
+const AddEntryForm = ({ onSubmit, onCancel }: Props) => {
+
+    const [description, setDescription] = useState<string>('');
+    const [date, setDate] = useState<string>('');
+    const [specialist, setSpecialist] = useState<string>('');
+    const [diagnosisCodes, setDiagnosisCodes] = useState<string>('');
+    const [selectedType, setSelectedType] = useState<EntryType>(EntryType.HealthCheck);
+    const [healthCheckRating, setHealthCheckRating] = useState(0);
+    const [dischargeDate, setDischargeDate] = useState('');
+    const [dischargeCriteria, setDischargeCriteria] = useState('');
+    const [sickLeaveStart, setSickLeaveStart] = useState('');
+    const [sickLeaveEnd, setSickLeaveEnd] = useState('');
+    const [employerName, setEmployerName] = useState('');
+
+
+    const onTypeChange = (event: SelectChangeEvent<string>) => {
         event.preventDefault();
-        onSubmit({
-            date,
-            specialist,
-            diagnosisCodes,
-            description,
-            type:'HealthCheck',
-            healthCheckRating:2,
-
-        });
+        if (typeof event.target.value === 'string') {
+            const selected = Object.values(EntryType).find(t => t.toString() === event.target.value);
+            console.log('selected value:', selected);
+            if (selected) {
+                setSelectedType(selected);
+            }
+        }
     };
-    
+
+    const healthCheckEntryForm = () => {
+        return (
+            <>
+                <TextField label="healthCheckRating" type="number" value={healthCheckRating} fullWidth onChange={(ev) => setHealthCheckRating(Number(ev.target.value))} />
+            </>
+        );
+    };
+    const hospitalEntryForm = () => {
+        return (
+            <>
+                <TextField label="dischargeDate" value={dischargeDate} fullWidth onChange={(ev) => setDischargeDate(ev.target.value)} />
+                <TextField label="dischargeCriteria" value={dischargeCriteria} fullWidth onChange={(ev) => setDischargeCriteria(ev.target.value)} />
+            </>
+        );
+    };
+    const occupationalHealthcareEntryForm = () => {
+        return (
+            <>
+                <TextField label="sickLeaveStart" value={sickLeaveStart} fullWidth onChange={(ev) => setSickLeaveStart(ev.target.value)} />
+                <TextField label="sickLeaveEnd" value={sickLeaveEnd} fullWidth onChange={(ev) => setSickLeaveEnd(ev.target.value)} />
+                <TextField label="employerName" value={employerName} fullWidth onChange={(ev) => setEmployerName(ev.target.value)} />
+            </>
+        );
+    };
+
+    const baseEntryToSubmit = {
+        date,
+        specialist,
+        diagnosisCodes: diagnosisCodes.split(','),
+        description,
+    };
+
+    const entryToSubmit: { [key in EntryType]: EntryWithoutId } = {
+        [EntryType.HealthCheck]: {
+            ...baseEntryToSubmit,
+            type: EntryType.HealthCheck,
+            healthCheckRating,
+        },
+        [EntryType.Hospital]: {
+            ...baseEntryToSubmit,
+            type: EntryType.Hospital,
+            discharge: {
+                criteria: dischargeCriteria,
+                date: dischargeDate
+            },
+        },
+        [EntryType.OccupationalHealthcare]: {
+            ...baseEntryToSubmit,
+            type: EntryType.OccupationalHealthcare,
+            employerName,
+            sickLeave: {
+                startDate: sickLeaveStart,
+                endDate: sickLeaveEnd
+            },
+        }
+    }
+
+    const selectedEntryForm = (): JSX.Element => {
+        switch (selectedType) {
+            case EntryType.HealthCheck:
+                return healthCheckEntryForm()
+            case EntryType.Hospital:
+                return hospitalEntryForm()
+            case EntryType.OccupationalHealthcare:
+                return occupationalHealthcareEntryForm()
+            default:
+                return assertNever(selectedType);
+        }
+
+    }
+
+
+    const addEntry = (event: SyntheticEvent) => {
+        event.preventDefault();
+        if (entryToSubmit) {
+            onSubmit(entryToSubmit[selectedType]);
+        }
+
+        // console.log(entryToSubmit);
+    };
+
+
+
+
     return (
-        <div>
-            <form onSubmit={addEntry}>
-                <label htmlFor="description"></label>
-                {/* <input type="text" onChange={(ev)=>setDescription(ev.target.value)} /> */}
-                <button type="button" onClick={onCancel}>Close</button>
-                <button type="submit">Add</button>
+        <>
+            <form onSubmit={addEntry} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                <TextField label="date" value={date} fullWidth onChange={(ev) => setDate(ev.target.value)} />
+                <TextField label="description" value={description} fullWidth onChange={(ev) => setDescription(ev.target.value)} />
+                <TextField label="specialist" value={specialist} fullWidth onChange={(ev) => setSpecialist(ev.target.value)} />
+                <TextField label="diagnosisCodes" value={diagnosisCodes} fullWidth onChange={(ev) => setDiagnosisCodes(ev.target.value)} />
+                <InputLabel>Type:</InputLabel>
+                <Select label={'Type'} onChange={onTypeChange} value={selectedType}>
+                    {typeOptions.map(t => <MenuItem key={t} value={t} >{t}</MenuItem>)}
+                </Select>
+                {selectedEntryForm()}
+                {/* <DifferentEntryForm type={selectedType} data={data}/> */}
+                <Grid style={{ justifySelf: 'flex-end', marginLeft: 'auto' }}>
+                    <Button color="primary" type="button" onClick={onCancel}>Close</Button>
+                    <Button color="primary" variant="contained" type="submit">Add</Button>
+                </Grid>
             </form>
-        
-        </div>
+
+        </>
     );
 };
 

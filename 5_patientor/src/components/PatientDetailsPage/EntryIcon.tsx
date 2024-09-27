@@ -1,16 +1,16 @@
-import { Entry } from "../../types";
+import {  EntryType } from "../../types";
 import { assertNever } from "../../utils";
 
 
-const EntryIcon = ({type}:{type:Entry['type']})=>{
+const EntryIcon = ({type}:{type:EntryType})=>{
     switch(type){
-        case 'HealthCheck':
+        case EntryType.HealthCheck:
             return '📊'; 
             
-        case 'Hospital':
+        case EntryType.Hospital:
             return '🏥'; 
             
-        case 'OccupationalHealthcare':
+        case EntryType.OccupationalHealthcare:
             return '💼'; 
         
         default:
