@@ -48,16 +48,16 @@ const AddEntryForm = ({ onSubmit, onCancel }: Props) => {
     const hospitalEntryForm = () => {
         return (
             <>
-                <TextField label="dischargeDate" value={dischargeDate} fullWidth onChange={(ev) => setDischargeDate(ev.target.value)} />
-                <TextField label="dischargeCriteria" value={dischargeCriteria} fullWidth onChange={(ev) => setDischargeCriteria(ev.target.value)} />
+                <TextField label="Discharge Date" type="date" value={dischargeDate} fullWidth onChange={(ev) => setDischargeDate(ev.target.value)} />
+                <TextField label="Discharge Criteria" value={dischargeCriteria} fullWidth onChange={(ev) => setDischargeCriteria(ev.target.value)} />
             </>
         );
     };
     const occupationalHealthcareEntryForm = () => {
         return (
             <>
-                <TextField label="sickLeaveStart" value={sickLeaveStart} fullWidth onChange={(ev) => setSickLeaveStart(ev.target.value)} />
-                <TextField label="sickLeaveEnd" value={sickLeaveEnd} fullWidth onChange={(ev) => setSickLeaveEnd(ev.target.value)} />
+                <TextField label="Sick Leave Start" type="date" value={sickLeaveStart} fullWidth onChange={(ev) => setSickLeaveStart(ev.target.value)} />
+                <TextField label="Sick Leave End" type="date" value={sickLeaveEnd} fullWidth onChange={(ev) => setSickLeaveEnd(ev.target.value)} />
                 <TextField label="employerName" value={employerName} fullWidth onChange={(ev) => setEmployerName(ev.target.value)} />
             </>
         );
@@ -125,9 +125,9 @@ const AddEntryForm = ({ onSubmit, onCancel }: Props) => {
     return (
         <>
             <form onSubmit={addEntry} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                <TextField label="date" value={date} fullWidth onChange={(ev) => setDate(ev.target.value)} />
-                <TextField label="description" value={description} fullWidth onChange={(ev) => setDescription(ev.target.value)} />
-                <TextField label="specialist" value={specialist} fullWidth onChange={(ev) => setSpecialist(ev.target.value)} />
+                <TextField label="Date" type="date" placeholder="" value={date} fullWidth onChange={(ev) => setDate(ev.target.value)} />
+                <TextField label="Description" value={description} fullWidth onChange={(ev) => setDescription(ev.target.value)} />
+                <TextField label="Specialist" value={specialist} fullWidth onChange={(ev) => setSpecialist(ev.target.value)} />
                 <TextField label="diagnosisCodes" value={diagnosisCodes} fullWidth onChange={(ev) => setDiagnosisCodes(ev.target.value)} />
                 <InputLabel>Type:</InputLabel>
                 <Select label={'Type'} onChange={onTypeChange} value={selectedType}>

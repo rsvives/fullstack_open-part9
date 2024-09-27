@@ -37,7 +37,7 @@ const PatientDetailsPage = ({ id }: { id: string }) => {
             const response = await patientService.addEntry(id, entry);
             const { addedEntry } = await response.data
             console.log(addedEntry)
-            patientDetails?.entries.concat(addedEntry)
+            patientDetails?.entries.push(addedEntry)
             setModalOpen(false)
         } catch (error: unknown) {
             if (axios.isAxiosError(error)) {
